@@ -40,22 +40,31 @@ def sort_by_cohort(filename):
     """
 
     all_students = []
-    # winter_15 = []
-    # spring_15 = []
-    # summer_15 = []
-    # tas = []
+    winter_15 = []
+    spring_15 = []
+    summer_15 = []
+    tas = []
 
-    for line in filename:
-        lines = line.split("|")
-        all_students.append(lines[0:2])
+    for student_info in filename:
+        stripped_student_info = student_info.rstrip()
+        split_student_info = stripped_student_info.split("|")
+        
+        all_students.append(split_student_info[0:2])
+        tas.append(split_student_info[3])
+        if split_student_info[4] == "Winter 2015":
+            winter_15.append(split_student_info[0:2])
+        if split_student_info[4] == "Spring 2015":
+            spring_15.append(split_student_info[0:2])
+        if split_student_info[4] == "Summer 2015":
+            summer_15.append(split_student_info[0:2])
+
     
 
-    first_name = all_students.sort([1,0])
+    #first_name = all_students.sort([1,0])
 
     # return houses 
 
-    print all_students
-    print first_name
+    print winter_15
 
 sort_by_cohort(filename)
 
